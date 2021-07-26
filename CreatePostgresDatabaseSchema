@@ -1,0 +1,26 @@
+BEGIN;
+
+CREATE TABLE IF NOT EXISTS Movie
+(
+    title "text",
+    description "text",
+    original_title "text",
+    movie_id integer NOT NULL,
+    PRIMARY KEY (movie_id)
+);
+
+CREATE TABLE IF NOT EXISTS Director
+(
+    name "text",
+    imdb_link "text",
+    director_id integer,
+    PRIMARY KEY (director_id)
+);
+
+CREATE TABLE IF NOT EXISTS DirectingCredit
+(
+    movie integer references Movie(movie_id),
+    director integer references Director(director_id),
+    UNIQUE (movie, director)
+);
+END;
